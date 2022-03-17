@@ -8,7 +8,14 @@ export const GET_USERS = "GET_USERS";
 export const ADD_USER_ANSWER = "ADD_USER_ANSWER";
 export const ADD_USER_QUESTION = "ADD_USER_QUESTION";
 export const SET_LOGIN = "SET_LOGIN";
+export const SET_ROUTE = "SET_ROUTE";
 
+export function setRoute(route) {
+  return {
+    type: SET_ROUTE,
+    route,
+  };
+}
 export function setLogin(login) {
   return {
     type: SET_LOGIN,

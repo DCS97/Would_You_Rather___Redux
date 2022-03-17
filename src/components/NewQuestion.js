@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "../App.css";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { handleSaveQuestion } from "../store/actions";
+import { useNavigate, useLocation } from "react-router-dom";
+import { handleSaveQuestion, setRoute } from "../store/actions";
 
 function NewQuestion(props) {
+  const { pathname } = useLocation();
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -16,11 +18,13 @@ function NewQuestion(props) {
   useEffect(() => {
     if (!authedUser) {
       navigate("/");
+      dispatch(setRoute(pathname));
     }
   }, [authedUser]);
 
   const handleSubmit = () => {
     dispatch(handleSaveQuestion(option1, option2, authedUser));
+    navigate("/home");
   };
 
   return (

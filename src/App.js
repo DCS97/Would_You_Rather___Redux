@@ -30,12 +30,12 @@ function App() {
       <Header />
       <NavBar />
       <Routes>
+        <Route path="*" element={<PageNotFound />} />
         <Route exact path="/" element={<Login />} />
         <Route exact path="/add" element={<NewQuestion />} />
         <Route exact path="/leaderboard" element={<Leaderboard />} />
         <Route exact path="/home" element={<Home />} />
-        <Route path="/questions/:id" element={<QuestionDetail />} />
-        <Route element={<PageNotFound />} />
+        <Route exact path="/questions/:id" element={<QuestionDetail />} />
       </Routes>
     </div>
   );

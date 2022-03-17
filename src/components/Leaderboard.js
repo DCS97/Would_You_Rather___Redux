@@ -1,10 +1,14 @@
 import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
 import "../App.css";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { setRoute } from "../store/actions";
 
 function Leaderboard(props) {
+  const { pathname } = useLocation();
+
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const authedUser = useSelector((state) => state.user);
   const users = useSelector((state) => state.users);
@@ -14,6 +18,7 @@ function Leaderboard(props) {
   useEffect(() => {
     if (!authedUser) {
       navigate("/");
+      dispatch(setRoute(pathname));
     }
   }, [authedUser]);
 

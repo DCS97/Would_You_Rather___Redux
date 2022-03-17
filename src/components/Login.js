@@ -2,21 +2,29 @@ import React, { useEffect } from "react";
 import "../App.css";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { setAuthedUser } from "../store/actions";
-import { useNavigate } from "react-router-dom";
+import { setAuthedUser, setRoute } from "../store/actions";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function Login(props) {
+  const { pathname } = useLocation();
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const users = useSelector((state) => state.users);
   const authedUser = useSelector((state) => state.user);
+  const previousPath = useSelector((state) => state.route);
 
   const handleClick = (userId) => {
     dispatch(setAuthedUser(userId));
   };
+
   useEffect(() => {
     if (authedUser) {
-      navigate("/home");
+      if (previousPath) {
+        navigate(previousPath);
+        dispatch(setRoute(pathname));
+      } else navigate("/home");
     }
   }, [authedUser]);
 

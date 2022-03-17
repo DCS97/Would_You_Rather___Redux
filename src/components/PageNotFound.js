@@ -6,7 +6,9 @@ function PageNotFound() {
     <Fragment>
       <h1 className="display3 text-center">404 ERROR</h1>
       <h1 className="display4 text-center">
-        <Link to="/">Return to Home Page</Link>
+        <Link style={{ color: "red" }} to="/home">
+          Return to Home Page
+        </Link>
       </h1>
     </Fragment>
   );
